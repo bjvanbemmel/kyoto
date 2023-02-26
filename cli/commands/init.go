@@ -3,6 +3,8 @@ package commands
 import (
 	"errors"
 	"fmt"
+
+	"github.com/bjvanbemmel/kyoto/project"
 )
 
 type Init struct {
@@ -24,7 +26,12 @@ func (i Init) Execute(args ...string) error {
 		return errors.New("No trailing argument(s) or value(s)!")
 	}
 
-	fmt.Println(args[0])
+    if err := project.Generate(args[0]); err != nil {
+        return err
+    }
+
+    fmt.Printf("Successfully created '%s'. We hope you build something lovely!\n", args[0])
+    fmt.Printf("\nRun 'cd %s' to enter the new directory.\n", args[0])
 
 	return nil
 }

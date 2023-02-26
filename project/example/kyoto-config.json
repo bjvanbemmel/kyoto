@@ -1,0 +1,9 @@
+{
+    "version": "0.1.0",
+    "author": "Mirai Kuriyama",
+
+    "settings": {
+        "default_template": "index.html"
+    }
+}
+
