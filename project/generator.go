@@ -14,29 +14,29 @@ var example embed.FS
 var target string
 
 func Generate(name string) error {
-    target = name
+	target = name
 
-    return fs.WalkDir(example, ".", createFiles)
+	return fs.WalkDir(example, ".", createFiles)
 }
 
 func createFiles(path string, d fs.DirEntry, err error) error {
-    if path == "." {
-        return nil
-    }
+	if path == "." {
+		return nil
+	}
 
-    splitPath := strings.Split(path, "/")
-    newPath := strings.Join(splitPath[1:], "/")
-    newPath = fmt.Sprintf("%s/%s", target, newPath)
+	splitPath := strings.Split(path, "/")
+	newPath := strings.Join(splitPath[1:], "/")
+	newPath = fmt.Sprintf("%s/%s", target, newPath)
 
-    if d.IsDir() {
-        return os.Mkdir(newPath, os.ModePerm)
-    }
+	if d.IsDir() {
+		return os.Mkdir(newPath, os.ModePerm)
+	}
 
-    file, err := fs.ReadFile(example, path)
+	file, err := fs.ReadFile(example, path)
 
-    if err != nil {
-        return err
-    }
+	if err != nil {
+		return err
+	}
 
-    return os.WriteFile(newPath, file, 0644)
+	return os.WriteFile(newPath, file, 0644)
 }
