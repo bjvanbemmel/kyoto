@@ -2,10 +2,9 @@ package project
 
 import (
 	"embed"
-	"fmt"
 	"io/fs"
 	"os"
-	"strings"
+	"regexp"
 )
 
 //go:embed example
@@ -24,9 +23,7 @@ func createFiles(path string, d fs.DirEntry, err error) error {
 		return nil
 	}
 
-	splitPath := strings.Split(path, "/")
-	newPath := strings.Join(splitPath[1:], "/")
-	newPath = fmt.Sprintf("%s/%s", target, newPath)
+	newPath := regexp.MustCompile("^example").ReplaceAllString(path, target)
 
 	if d.IsDir() {
 		return os.Mkdir(newPath, os.ModePerm)
