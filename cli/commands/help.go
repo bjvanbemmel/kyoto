@@ -21,7 +21,7 @@ func (h *Help) Init() error {
 }
 
 func (h Help) Execute(...string) error {
-	fmt.Println("\nUsage: kyoto [COMMAND] [ARGUMENTS] [OPTIONS]")
+	fmt.Println("\nUsage: kyoto [COMMAND] [OPTIONS] [ARGUMENTS]")
 	fmt.Printf("\nA lightweight static site generator.\n\n")
 
 	fmt.Println("Commands:")

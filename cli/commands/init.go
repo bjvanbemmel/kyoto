@@ -15,7 +15,7 @@ type Init struct {
 
 func (i *Init) Init() error {
 	i.name = "init"
-	i.description = "Initialize a new Kyoto project"
+	i.description = "Initializes a new Kyoto project"
 	i.usage = "kyoto init <project title>"
 
 	return nil
